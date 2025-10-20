@@ -20,8 +20,13 @@ public class BillDetail {
 
     private Double interestAmount;
 
+    private String platForm;
+
     @ManyToOne
     private Product product;
+
+    @ManyToOne
+    private Bill bill;
 
 
 }
