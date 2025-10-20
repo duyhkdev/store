@@ -27,7 +27,14 @@ public class SaleController {
     @PostMapping("/update")
     public ResponseEntity<String> update(@RequestBody BillDTO dto,
                                          Locale locale) {
-        billService.create(dto);
+        billService.update(dto);
+        return ResponseEntity.ok(messageSource.getMessage("0x000001", null, locale));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id,
+                                         Locale locale) {
+        billService.delete(id);
         return ResponseEntity.ok(messageSource.getMessage("0x000001", null, locale));
     }
 }

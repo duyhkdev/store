@@ -11,6 +11,7 @@ import com.linhchou.store.repository.BillDetailRepository;
 import com.linhchou.store.repository.BillRepository;
 import com.linhchou.store.repository.FeeFormulaRepository;
 import com.linhchou.store.service.BillService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,13 @@ public class BillServiceIplm implements BillService {
     @Override
     public void update(BillDTO dto) {
         calculateInterest(dto.getDetails(), dto.getAdsCosts());
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        billDetailRepository.deleteByBillId(id);
+        billRepository.deleteById(id);
     }
 
     private void calculateInterest(List<BillDetailDTO> details, Double adsCosts) {
