@@ -11,14 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductDetailEntity {
+public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String color;
+    private String size;
     @ManyToOne
-    private SizeEntity size;
-
-    @ManyToOne
-    private ColorEntity color;
+    private Product product;
 }

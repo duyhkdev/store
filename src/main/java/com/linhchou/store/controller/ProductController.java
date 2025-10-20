@@ -21,4 +21,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAll(filter));
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<List<ProductDTO>> create(@RequestBody ProductDTO dto) {
+        return ResponseEntity.ok(null);
+    }
 }

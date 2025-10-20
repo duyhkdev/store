@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductDTO> getAll(ProductFilter filter);
+    void create(ProductDTO dto);
+    void update(ProductDTO dto);
 }
