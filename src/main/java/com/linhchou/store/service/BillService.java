@@ -6,4 +6,6 @@ public interface BillService {
     void create(BillDTO billDTO);
     void update(BillDTO billDTO);
     void delete(Long id);
+
+    BillDTO getById(Long id);
 }

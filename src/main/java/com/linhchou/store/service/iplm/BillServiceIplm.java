@@ -46,6 +46,16 @@ public class BillServiceIplm implements BillService {
         billRepository.deleteById(id);
     }
 
+    @Override
+    public BillDTO getById(Long id) {
+        Bill bill = billRepository.findById(id).orElse(null);
+        List<BillDetail> billDetails = billDetailRepository.findByBillId(id);
+        BillDTO dto = mapper.map(bill, BillDTO.class);
+        List<BillDetailDTO> billDetailDTOS = billDetails.stream().map(dt -> mapper.map(dt, BillDetailDTO.class)).collect(Collectors.toList())
+        dto.setDetails(billDetailDTOS);
+        return dto;
+    }
+
     private void calculateInterest(List<BillDetailDTO> details, Double adsCosts) {
         details.forEach(dt -> {
             List<FeeFormula> feeFormulas = feeFormulaRepository.findByPlatform(dt.getPlatForm());

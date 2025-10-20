@@ -24,6 +24,12 @@ public class SaleController {
         return ResponseEntity.ok(messageSource.getMessage("0x000001", null, locale));
     }
 
+    @PostMapping("/{id}")
+    public ResponseEntity<BillDTO> getById(@PathVariable Long id) {
+        BillDTO dto = billService.getById(id);
+        return ResponseEntity.ok(dto);
+    }
+
     @PostMapping("/update")
     public ResponseEntity<String> update(@RequestBody BillDTO dto,
                                          Locale locale) {
