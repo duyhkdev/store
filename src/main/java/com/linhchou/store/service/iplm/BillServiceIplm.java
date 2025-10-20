@@ -51,7 +51,7 @@ public class BillServiceIplm implements BillService {
         Bill bill = billRepository.findById(id).orElse(null);
         List<BillDetail> billDetails = billDetailRepository.findByBillId(id);
         BillDTO dto = mapper.map(bill, BillDTO.class);
-        List<BillDetailDTO> billDetailDTOS = billDetails.stream().map(dt -> mapper.map(dt, BillDetailDTO.class)).collect(Collectors.toList())
+        List<BillDetailDTO> billDetailDTOS = billDetails.stream().map(dt -> mapper.map(dt, BillDetailDTO.class)).collect(Collectors.toList());
         dto.setDetails(billDetailDTOS);
         return dto;
     }
